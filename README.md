@@ -10,32 +10,32 @@ CacheDirectODBCWapper.csを参考にして、同様の処理を記述してく�
 
 ### IRISサーバー
 
-使用バージョンは、IRIS for Windows (x86-64) 2020.1 (Build 215U) Mon Mar 30 2020 20:14:33 EDTです。
-
+使用バージョンは、IRIS for Windows (x86-64) 2021.2 (Build 650U) Tue Jan 25 2022 13:12:18 ESTです。
 
 
 ### IRISサーバー側のクラス
 
 ODBCEmulator.clsを適当なネームスペースにインポート（サンプルはUSERネームスペースで動かすことを前提にしています）
 
-### C#のプロジェクトファイルをVisual Studioで読み込む
+### C#のソリューションファイルをVisual Studioで読み込む
 
-ファイルをVisual Studioで読み込ます。
+vismodbc.slnファイルをVisual Studioで読み込ます。
 
 使用したバージョンは、以下になります。
 
-Microsoft Visual Studio Community 2019
-
-Version 16.6.0
+Microsoft Visual Studio Community 2022 (64 ビット) - Current
+Version 17.1.1
 
 ### 参照設定
 
-Visual Studioのプロジェクト設定から参照の追加を選び、以下のファイルを追加してください。
+このプログラムは、JSONを使用しているので、その処理のために
+
+c:\InterSystems\IRIS\dev\dotnet\bin\v4.5\Newtonsoft.Json.dllを参照しています。
 
 
 ### ビルド
 
-Visual StudioのビルドメニューからC_SharpConsoleApplicationのビルドをクリック
+Visual Studioのビルドメニューからvismodbcのビルドをクリック
 
 出力ウィンドウにエラーがないことを確認してください。
 
@@ -45,7 +45,7 @@ Visual StudioのビルドメニューからC_SharpConsoleApplicationのビルド
 
 Visual Studioのデバッグメニューからデバッグの開始をクリックします。
 
-このアプリケーションを終了するには、任意のキーを押す必要があります。
+このアプリケーションを正常終了するには、コンソール上のメッセージに従って5秒経過後、任意のキーを押す必要があります。
 
 アプリケーションの出力結果は、Visual Studioの出力ウィンドウに表示されます。
 
@@ -98,9 +98,7 @@ Cache Directの機能の中で、Visual Basicの固有の機能は、サポー�
 
 ## コンストラクター
 
-2個のコンストラクターが用意されています。
+１個のコンストラクターが用意されています。
 
-cacheDirectWapper(string constr)
-
-cacheDirectWapper(IRISConnection irisconn)
+cacheDirectWapper(string DSN)
 
