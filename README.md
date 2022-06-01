@@ -1,106 +1,104 @@
-# Shop DEMO
+# ODBC interface for Cache Direct(VisM.OCX) Emulation for IRIS
 
-ShopデモアプリケーションのDocker Build
-
-
-## ビルドプロセス
-
-### Build & Run
-* ```docker-compose up -d --build```
+VisM.OCXのインタフェースをODBCを利用してエミュレーションしています。
+ここでは.Net上で動作するように実装していますが、.NET以外の開発環境（Delphi等）からも利用可能です。
 
 
-## 起動方法
+## 使用方法
 
-### デモアプリケーション
+### IRISサーバー
 
-[localhost:52778/csp/user/Order/Shop/login.htm](http://localhost:52778/csp/user/Order/Shop/login.htm)
+使用バージョンは、IRIS for Windows (x86-64) 2020.1 (Build 215U) Mon Mar 30 2020 20:14:33 EDTです。
 
-### 管理ポータル
 
-[localhost:52778/csp/sys/%25CSP.Portal.Home.zen?IRISUsername=_system&IRISPassword=SYS](http://localhost:52778/csp/sys/%25CSP.Portal.Home.zen?IRISUsername=_system&IRISPassword=SYS)
 
-### Webターミナル
+### IRISサーバー側のクラス
 
-[localhost:52778/terminal/?IRISUsername=_system&IRISPassword=SYS](http://localhost:52778/terminal/?IRISUsername=_system&IRISPassword=SYS)
+CacheDirect.ODBCEmulator.clsを適当なネームスペースにインポート（サンプルはUSERネームスペースで動かすことを前提にしています）
 
-### RESTインターフェース
+### C#のプロジェクトファイルをVisual Studioで読み込む
 
-#### GETサンプル
+ファイルをVisual Studioで読み込ます。
 
-http://localhost:52778/shop/products?IRISUsername=_system&IRISPassword=SYS
+使用したバージョンは、以下になります。
 
-content-type application/json; charset=utf-8
+Microsoft Visual Studio Community 2019
 
-#### POSTサンプル
+Version 16.6.0
 
-http://localhost:52778/shop/addorder?IRISUserName=_system&IRISPassword=SYS
+### 参照設定
 
-{"ShipTo":{"City":"Tokyo","Street":"Ginza","PostalCode":"1600001"},"CustomerId":1,"Items":[{"ProductId":"MNT001","Amount":1},{"ProductId":"PC001","Amount":1}]}
+Visual Studioのプロジェクト設定から参照の追加を選び、以下のファイルを追加してください。
 
-#### クレデンシャル情報
 
-##### デモアプリケーション
+### ビルド
 
-| 項目   | 値    |
-|-------|-------|
-利用者ID | taro |
-パスワード| taro |
+Visual StudioのビルドメニューからC_SharpConsoleApplicationのビルドをクリック
 
-##### その他
+出力ウィンドウにエラーがないことを確認してください。
 
-| 項目           | 値        |
-|---------------|------------
-| システムログイン |　_system  |
-|パスワード　	   |SYS|
+エラーが出る場合は、参照設定がうまくいっていない可能性が高いです。
 
-### SQLサンプル
+### 実行
 
-* `select * from shop.porder`
-* `select * from shop.orderitem`
+Visual Studioのデバッグメニューからデバッグの開始をクリックします。
 
-### インターオペラビリティデモ
+このアプリケーションを終了するには、任意のキーを押す必要があります。
 
-#### プロダクション開始と注文ファイルのコピー
+アプリケーションの出力結果は、Visual Studioの出力ウィンドウに表示されます。
 
-```docker ps
-docker exec -ti shopdemo /bin/sh
 
-iris session iris
+## 制限事項
 
->do ##class(Ens.Director).StartProduction("Shop.Production")
->h
+### サポートしていないプロパティ
 
-cp /intersystems/iris/shop/samples/* /intersystems/iris/shop/message/in
-```
+- ConnectionState
+- ConTag
+- ElapsedTime
+- ErrorTrap
+- KeepAliveInterval
+- KeepAliveTimeOut
+- LogMask
+- MServer
+- MsgText
+- NameSpace
+- PromptInterval
+- Server
+- Tag
+- TimeOut
 
-#### 結果確認
+### サポートしていないメソッド
 
-* `select * from shop.porder`
-* `select * from shop.orderitem`
+- DeleteConnection
+- SetMServer
+- SetServer
 
-### NLPデモ
+### サポートしていないイベント
 
-#### ドメイン設定
+- Shutdown Events
 
-管理ポータル>Analytics>Text Analytics>ドメインアーキテクト
+### サポートされない追加機能
 
-##### 新規作成
+- ErrorTrapping
+- The Keep Alive Feature
+- Server Read Loop and Quick Check
+- Read and Write Hooks
+- Other Server Side Hooks
+- User Cancel Option
 
-ドメイン設定
+### Visual Basic依存機能
 
-|項目名    |値                |
-|---------|------------------|
-|ドメイン名 |news             |
-|クラス名   |news.nhk         |
-|言語　     |Japaneseのみ選択  |
+Cache Directの機能の中で、Visual Basicの固有の機能は、サポートしていません。
 
- データ位置
+- コールバック機能
+- MessageBox
+- DoEventsなど
 
-|項目名      |値                 |
-------------|-------------------
-|名前：	     |RSS_1              |
-|バッチモード　|yes               |
-|サーバー名	   |www3.nhk.or.jp    |
-|url		  |/rss/news/cat0.xml|
+## コンストラクター
 
-#### 保存、コンパイル、構築
+2個のコンストラクターが用意されています。
+
+cacheDirectWapper(string constr)
+
+cacheDirectWapper(IRISConnection irisconn)
+
