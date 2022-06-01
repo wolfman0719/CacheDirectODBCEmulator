@@ -35,18 +35,17 @@ ClassMethod Execute(Command As %String(MAXLEN=1000), Params As %String(MAXLEN=64
 	   set PLIST(i) = $piece(tPLIST,PDELIM,i)
      }
    }
-   set params.iErrorName = ""
-   set params.iError = 0
+   set params.ErrorName = ""
+   set params.Error = 0
  
    xecute ecommand
    do ..PropertyRestore()
  }
  catch error {
    do ..PropertyRestore()
-   set params.iErrorName = error.Name
-   set params.iError = 1
-   set params.ErrorStatus = error.AsStatus()
+   set params.ErrorName = error.Name
    set params.Error = 1
+   set params.ErrorStatus = error.AsStatus()
  }
   
  quit params.%ToJSON()
