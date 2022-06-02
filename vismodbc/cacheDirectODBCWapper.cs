@@ -104,7 +104,7 @@ namespace cachedirectodbc
             this.p8 = "";
             this.p9 = "";
             this.plist = "";
-            this.pdelim = ";";
+            this.pdelim = "\r\n";
             this.error = 0;
             this.code = "";
             this.value = "";
