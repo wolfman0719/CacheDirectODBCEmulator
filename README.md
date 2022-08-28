@@ -63,7 +63,6 @@ Visual Studioのデバッグメニューからデバッグの開始をクリッ�
 - LogMask
 - MServer
 - MsgText
-- NameSpace
 - PromptInterval
 - Server
 - Tag
