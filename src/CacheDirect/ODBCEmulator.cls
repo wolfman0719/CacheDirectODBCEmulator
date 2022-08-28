@@ -26,7 +26,6 @@ ClassMethod Execute(Command As %String(MAXLEN=1000), Params As %String(MAXLEN=64
    set P7=params.P7
    set P8=params.P8
    set P9=params.P9
-   kill PLIST
    set tPLIST=params.PLIST
    set PDELIM = params.PDELIM
 
@@ -35,19 +34,21 @@ ClassMethod Execute(Command As %String(MAXLEN=1000), Params As %String(MAXLEN=64
 	   set PLIST(i) = $piece(tPLIST,PDELIM,i)
      }
    }
-   set params.ErrorName = ""
-   set params.Error = 0
+   set params.iErrorName = ""
+   set params.iError = 0
  
    xecute ecommand
    do ..PropertyRestore()
  }
  catch error {
    do ..PropertyRestore()
-   set params.ErrorName = error.Name
-   set params.Error = 1
+   set params.iErrorName = error.Name
+   set params.iError = 1
    set params.ErrorStatus = error.AsStatus()
+   set params.Error = 1
  }
   
+ kill P0,P1,P2,P3,P4,P5,P6,P7,P8,P9,PLIST,PDELIM,VALUE 
  quit params.%ToJSON()
 }
 
