@@ -65,7 +65,7 @@ namespace cachedirectodbc
 
     public class cacheDirectODBCWapper
     {
-		public OdbcConnection odbcCon;
+	public OdbcConnection odbcCon;
         public event EventHandler ErrorEvent;
         public event EventHandler ExecuteEvent;
 
@@ -349,17 +349,17 @@ namespace cachedirectodbc
 			
             OdbcCommand cmd = new OdbcCommand();
             cmd.Connection = odbcCon;
-			string callSQL = @"?=call CacheDirect.ODBCEmulator_Execute(?,?)";
+	    string callSQL = @"?=call CacheDirect.ODBCEmulator_Execute(?,?)";
             OdbcParameter param1 = new OdbcParameter();
             OdbcParameter param2 = new OdbcParameter();
             OdbcParameter param3 = new OdbcParameter();
 			
-			param1.DbType = DbType.String;
+	    param1.DbType = DbType.String;
             param1.Direction = ParameterDirection.ReturnValue;
             param1.Size = 64000;
             cmd.Parameters.Add(param1);
 
-			param2.DbType = DbType.String;
+	    param2.DbType = DbType.String;
             param2.Value = command;
             cmd.Parameters.Add(param2);
 
@@ -384,18 +384,18 @@ namespace cachedirectodbc
                 inamespace = this.inamespace
             };
 
-			string paramsStr = JsonConvert.SerializeObject(jsonObj, Formatting.None);
+	    string paramsStr = JsonConvert.SerializeObject(jsonObj, Formatting.None);
 
-			param3.DbType = DbType.String;
+	    param3.DbType = DbType.String;
             param3.Value = paramsStr;
             cmd.Parameters.Add(param3);
 
             cmd.CommandText = callSQL; 
             cmd.ExecuteNonQuery();
 			
-			string props = param1.Value.ToString();
+	    string props = param1.Value.ToString();
 			
-			Vism result = JsonConvert.DeserializeObject<Vism>(props);
+	    Vism result = JsonConvert.DeserializeObject<Vism>(props);
 
             this.p0 = result.P0;
             this.p1 = result.P1;
