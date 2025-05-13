@@ -24,11 +24,11 @@ namespace cachedirectodbc
         }
 
         public ConsoleApp()
-		{
+	{
 
-			//
-			// TODO: Add code to start application here
-			//
+		//
+		// TODO: Add code to start application here
+		//
             try
             {
                 // Create a cacheDirectWapper instance
@@ -108,14 +108,14 @@ namespace cachedirectodbc
             finally
             {
             }
-		}
+	}
 
         static void Main(string[] args)
-		{
+	{
 
-			//
-			// TODO: Add code to start application here
-			//
+		//
+		// TODO: Add code to start application here
+		//
             try
             {
                 ConsoleApp ca = new ConsoleApp();
@@ -124,6 +124,6 @@ namespace cachedirectodbc
             finally
             {
             }
-		}
+	}
     }
 }
