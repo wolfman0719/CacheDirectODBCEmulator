@@ -12,7 +12,7 @@ ClassMethod Execute(Command As %String(MAXLEN=1000), Params As %String(MAXLEN=64
      set ecommand="Set VALUE="_Command
    }
    else {
-	 set ecommand = Command
+     set ecommand = Command
    }
       
    set params = {}.%FromJSON(Params)
@@ -31,7 +31,7 @@ ClassMethod Execute(Command As %String(MAXLEN=1000), Params As %String(MAXLEN=64
 
    if (tPLIST'="") && (tPLIST'= $char(0)) {
      for i = 1:1:$length(tPLIST,PDELIM) {
-	   set PLIST(i) = $piece(tPLIST,PDELIM,i)
+       set PLIST(i) = $piece(tPLIST,PDELIM,i)
      }
    }
    set params.iErrorName = ""
@@ -71,24 +71,24 @@ ClassMethod PropertyRestore() As %Status [ PublicList = (P0, P1, P2, P3, P4, P5,
   kill plist
   set node = "",plistcount = 0
   for {
-	 set node = $order(PLIST(node))
-	 if node = "" quit
-	    set plistcount = plistcount + 1
-	    set plist(plistcount) = PLIST(node)
-     }
-     if +$get(PLIST) = 0 {
-	   set PLIST = plistcount
-       for i = 1:1:PLIST {
-	     set PLISTS = $get(PLISTS)_PDELIM_$get(plist(i))
-       }
-       set params.PLIST = $extract($get(PLISTS),2,*)
-     }
-     else {
-       for i = 1:1:PLIST {
-	     set PLISTS = $get(PLISTS)_PDELIM_$get(PLIST(i))
-       }
-       set params.PLIST = $extract($get(PLISTS),2,*)
-     }
+    set node = $order(PLIST(node))
+    if node = "" quit
+    set plistcount = plistcount + 1
+    set plist(plistcount) = PLIST(node)
+  }
+  if +$get(PLIST) = 0 {
+    set PLIST = plistcount
+    for i = 1:1:PLIST {
+      set PLISTS = $get(PLISTS)_PDELIM_$get(plist(i))
+    }
+    set params.PLIST = $extract($get(PLISTS),2,*)
+  }
+  else {
+    for i = 1:1:PLIST {
+      set PLISTS = $get(PLISTS)_PDELIM_$get(PLIST(i))
+    }
+    set params.PLIST = $extract($get(PLISTS),2,*)
+  }
 }
 
 ClassMethod Test() As %Status
