@@ -10,7 +10,7 @@ CacheDirectODBCWapper.csを参考にして、同様の処理を記述してく�
 
 ### IRISサーバー
 
-使用バージョンは、IRIS for Windows (x86-64) 2021.2 (Build 650U) Tue Jan 25 2022 13:12:18 ESTです。
+使用バージョンは、IRIS for Windows (x86-64) 2025.1 (Build 223U) Tue Mar 11 2025 18:14:42 EDTです。
 
 
 ### IRISサーバー側のクラス
@@ -19,7 +19,7 @@ ODBCEmulator.clsを適当なネームスペースにインポート（サンプ�
 
 ### C#のソリューションファイルをVisual Studioで読み込む
 
-vismodbc.slnファイルをVisual Studioで読み込ます。
+CacheDirectODBC.csprojファイルをVisual Studioで読み込ます。
 
 使用したバージョンは、以下になります。
 
@@ -28,9 +28,11 @@ Version 17.1.1
 
 ### 参照設定
 
-このプログラムは、JSONを使用しているので、その処理のために
+このプログラムは、JSONを使用しているので、その処理のためにJson.NETのインストールが必要です。
 
-c:\InterSystems\IRIS\dev\dotnet\bin\v4.5\Newtonsoft.Json.dllを参照しています。
+プロジェクトメニューからNuGetパッケージの管理を選択
+
+参照タブからNewToSoft.Jsonを選択してインストール
 
 
 ### ビルド
@@ -66,7 +68,6 @@ Visual Studioのデバッグメニューからデバッグの開始をクリッ�
 - PromptInterval
 - Server
 - Tag
-- TimeOut
 
 ### サポートしていないメソッド
 
