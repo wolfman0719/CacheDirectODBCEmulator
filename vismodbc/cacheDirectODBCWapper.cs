@@ -52,15 +52,19 @@ namespace cachedirectodbc
         [JsonProperty("ErrorName")]
         public string ErrorName { get; set; }
 
+        [JsonProperty("ErrorDetail")]
+        public string ErrorDetail { get; set; }
         [JsonProperty("Value")]
         public string Value { get; set; }
 
         [JsonProperty("Error")]
         public long Error { get; set; }
 
-        [JsonProperty("inamespace")]
-        public string inamespace { get; set; }
+        [JsonProperty("Namespace")]
+        public string NameSpace { get; set; }
 
+        [JsonProperty("TimeOut")]
+        public string TimeOut { get; set; }
     }
 
     public class cacheDirectODBCWapper
@@ -90,6 +94,8 @@ namespace cachedirectodbc
         private long error;
         private long interval;
         private string inamespace;
+        private string errordetail;
+        private long timeout;
 
         private void Init()
         {
@@ -110,6 +116,7 @@ namespace cachedirectodbc
             this.value = "";
             this.errorname = "";
             this.inamespace = "";
+            this.errordetail = "";
         }
 
         private void Exec3(object source, ElapsedEventArgs e)
@@ -296,9 +303,21 @@ namespace cachedirectodbc
             }
             get { return this.interval; }
         }
+        public long TimeOut
+        {
+            set
+            {
+                this.timeout = value;
+            }
+            get { return this.timeout; }
+        }
         public string ErrorName
         {
             get { return this.errorname; }
+        }
+        public string ErrorDetail
+        {
+            get { return this.errordetail; }
         }
         public string Error
         {
@@ -381,7 +400,8 @@ namespace cachedirectodbc
                 Value = this.value,
                 ErrorName = this.errorname,
                 Error = this.error,
-                inamespace = this.inamespace
+                NameSpace = this.inamespace,
+                TimeOut = this.timeout.ToString()
             };
 
 	    string paramsStr = JsonConvert.SerializeObject(jsonObj, Formatting.None);
@@ -412,8 +432,9 @@ namespace cachedirectodbc
             this.code = result.Code;
             this.value = result.Value;
             this.errorname = result.ErrorName;
+            this.errordetail = result.ErrorDetail;
             this.error = result.Error;
-            this.inamespace = result.inamespace;
+            this.inamespace = result.NameSpace;
 
             if (error == 1)
             {
@@ -464,7 +485,7 @@ namespace cachedirectodbc
         }
         public string Version
         {
-            get { return "V1.0"; }
+            get { return "V2.0"; }
         }
     }
 }

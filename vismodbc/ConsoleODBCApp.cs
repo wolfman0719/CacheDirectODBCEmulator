@@ -100,7 +100,24 @@ namespace cachedirectodbc
                 cdw.Execute("set a = P00");
 
                 Debug.Print("ErrorName = " + cdw.ErrorName);
+                Debug.Print("ErrorDetail = " + cdw.ErrorDetail);
                 Debug.Print("\n");
+
+
+                // timeoutはミリ秒が単位
+                // timeout is miliseocond based
+                cdw.TimeOut = 5000;
+                cdw.Execute("=$zv");
+                Debug.Print("VALUE = " + cdw.VALUE);
+                Debug.Print("ErrorName = " + cdw.ErrorName);
+                Debug.Print("ErrorDetail = " + cdw.ErrorDetail);
+                Debug.Print("\n");
+
+                cdw.Execute("set x=$zv h 10");
+                Debug.Print("ErrorName = " + cdw.ErrorName);
+                Debug.Print("ErrorDetail = " + cdw.ErrorDetail);
+                Debug.Print("\n");
+
                 // Cleanup CachedirectWapper
 
                 cdw.end();
