@@ -37,6 +37,12 @@ namespace cachedirectodbc
                 cdw.ErrorEvent += OnError;
                 cdw.ExecuteEvent += Executed;
 
+                Debug.Print("Client Version = " + cacheDirectODBCWapper.Version);
+
+                cdw.Execute("=##class(CacheDirect.ODBCEmulator).Version()");
+                Debug.Print("Server Version = " + cdw.VALUE);
+                Debug.Print("\n");
+
                 cdw.P0 = "ABC;DEF;GHI";
                 cdw.P1 = ";";
                 cdw.PDELIM = ";";

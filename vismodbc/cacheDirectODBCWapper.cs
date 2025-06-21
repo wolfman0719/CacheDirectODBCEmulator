@@ -483,7 +483,7 @@ namespace cachedirectodbc
 
             return true;
         }
-        public string Version
+        public static string Version
         {
             get { return "V2.0"; }
         }
