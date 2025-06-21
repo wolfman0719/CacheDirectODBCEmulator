@@ -1,8 +1,11 @@
 # ODBC interface for Cache Direct(VisM.OCX) Emulation for IRIS
 
 VisM.OCXのインタフェースをODBCを利用してエミュレーションしています。
+
 ここでは.Net上で動作するように実装していますが、.NET以外の開発環境（Delphi等）からも利用可能です。
+
 但し、その場合は、その環境にあったラッパーコードを作成する必要があります。
+
 CacheDirectODBCWapper.csを参考にして、同様の処理を記述してください。
 
 
