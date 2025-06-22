@@ -270,7 +270,7 @@ namespace cachedirectodbc
                 }
                 else if (value == 3)
                 {
-                    timer.Interval = (double)interval;
+                    timer.Interval = (double)interval!;
                         
                     timer.AutoReset = true;
                     timer.Enabled = true;
@@ -414,11 +414,11 @@ namespace cachedirectodbc
             cmd.CommandText = callSQL; 
             cmd.ExecuteNonQuery();
 			
-	    string? props = param1.Value.ToString();
+	    string? props = param1.Value!.ToString();
 			
-	    Vism? result = JsonConvert.DeserializeObject<Vism>(props);
+	    Vism? result = JsonConvert.DeserializeObject<Vism>(props!);
 
-            this.p0 = result.P0;
+            this.p0 = result!.P0;
             this.p1 = result.P1;
             this.p2 = result.P2;
             this.p3 = result.P3;
@@ -455,7 +455,7 @@ namespace cachedirectodbc
 
             string? plist = this.PLIST;
 			
-            PLISTArray = plist.Split(PDELIM.ToCharArray());
+            PLISTArray = plist!.Split(PDELIM!.ToCharArray());
 
             return PLISTArray[index - 1];
         }
@@ -464,7 +464,7 @@ namespace cachedirectodbc
             string[] PLISTArray = { "" };
 
             string? plist = this.PLIST;
-            PLISTArray = plist.Split(PDELIM.ToCharArray());
+            PLISTArray = plist!.Split(PDELIM!.ToCharArray());
 
             return PLISTArray.Length;
         }
@@ -474,7 +474,7 @@ namespace cachedirectodbc
             string?[] PLISTArray = { "" };
 
             string? plist = this.PLIST;
-            PLISTArray = plist.ToString().Split(PDELIM.ToCharArray());
+            PLISTArray = plist!.ToString().Split(PDELIM!.ToCharArray());
 
             if (index <= PLISTArray.Length)
             {
