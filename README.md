@@ -23,6 +23,7 @@ ODBCEmulator.clsを適当なネームスペースにインポート（サンプ�
 ### C#のソリューションファイルをVisual Studioで読み込む
 
 CacheDirectODBC.csprojファイルをVisual Studioで読み込ます。
+（.Net Framework 4.8用）
 
 使用したバージョンは、以下になります。
 
@@ -37,6 +38,7 @@ Version 17.1.1
 
 参照タブからNewToSoft.Jsonを選択してインストール
 
+.net 6.0以降では、System.Data.Odbcのインストールも必要
 
 ### ビルド
 
