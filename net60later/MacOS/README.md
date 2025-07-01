@@ -15,6 +15,7 @@ brew install unixodbc
 ## 必要なunixodbc関連ライブラリをコピーする
 
 ```
+cp /opt/homebrew/Cellar/unixodbc/2.3.12/lib/*.dylib /usr/local/lib
 cp /opt/iris/bin/libodbc*.dylib /usr/local/lib
 cp /opt/iris/bin/irisconnect.so /usr/local/lib
 
