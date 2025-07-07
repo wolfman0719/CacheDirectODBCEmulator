@@ -62,8 +62,7 @@ Password=sys
 Description=Sample namespace
 Query Timeout=0
 Static Cursors=0
-Trace=on
-TraceFile=/Users/hsatoctr/unixodbc.log
+Trace=off
 ```
 
 ## PATHの設定
