@@ -15,7 +15,7 @@ brew install unixodbc
 ## 必要なunixodbc関連ライブラリをコピーする
 
 ```
-cp /opt/homebrew/Cellar/unixodbc/2.3.12/lib/*.dylib /usr/local/lib
+cp /opt/homebrew/lib/libodbc*.dylib /usr/local/lib
 cp /opt/iris/bin/libodbc*.dylib /usr/local/lib
 cp /opt/iris/bin/irisconnect.so /usr/local/lib
 
@@ -70,5 +70,5 @@ Trace=off
 例
 
 ```
-export PATH="/opt/homebrew/Cellar/unixodbc/2.3.12:/lib/opt/homebrew/bin:/opt/iris/bin:/opt/iris/lib/python:/opt/iris/mgr/python:$PATH"
+export PATH="/opt/homebrew/lib:/opt/homebrew/bin:/opt/iris/bin:/opt/iris/lib/python:/opt/iris/mgr/python:$PATH"
 ```
